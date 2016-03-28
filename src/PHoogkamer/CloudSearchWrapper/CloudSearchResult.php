@@ -110,7 +110,7 @@ class CloudSearchResult
      */
     public function fillWithHits(array $hits, $resultDocumentClass)
     {
-        $this->hits = [];
+        $this->hits = array();
 
         foreach ($hits as $hit) {
             /* @var $document CloudSearchDocumentInterface */

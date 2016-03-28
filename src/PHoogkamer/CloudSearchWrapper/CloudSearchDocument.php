@@ -138,7 +138,7 @@ class CloudSearchDocument implements CloudSearchDocumentInterface
     public function setFields(array $fields, $filterNullFields = true)
     {
         if ($filterNullFields) {
-            $fields = array_filter($fields, [$this, 'filterNullField']);
+            $fields = array_filter($fields, array($this, 'filterNullField'));
         }
 
         $this->fields = $fields;
@@ -197,11 +197,11 @@ class CloudSearchDocument implements CloudSearchDocumentInterface
      */
     public function getDocument()
     {
-        $document = [
+        $document = array(
             'type'   => $this->type,
             'id'     => $this->id,
             'fields' => $this->filterBadCharacters($this->fields)
-        ];
+        );
 
         return array_filter($document);
     }
@@ -216,7 +216,7 @@ class CloudSearchDocument implements CloudSearchDocumentInterface
             return null;
         }
 
-        $badCharacters = ['\u0015'];
+        $badCharacters = array('\u0015');
 
         return json_decode(str_replace($badCharacters, '', json_encode($fields)), true);
     }

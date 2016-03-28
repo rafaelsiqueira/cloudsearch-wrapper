@@ -33,11 +33,11 @@ class CloudSearchClient
      */
     public function __construct($endpoint, $key, $secret)
     {
-        $this->pushClient = CloudSearchDomainClient::factory([
+        $this->pushClient = CloudSearchDomainClient::factory(array(
             'base_url' => $endpoint,
             'key'      => $key,
             'secret'   => $secret
-        ]);
+        ));
 
         $this->searchClient = $this->pushClient;
     }
@@ -51,11 +51,11 @@ class CloudSearchClient
      */
     public function setPushClient($endpoint, $key, $secret)
     {
-        $this->pushClient = CloudSearchDomainClient::factory([
+        $this->pushClient = CloudSearchDomainClient::factory(array(
             'base_url' => $endpoint,
             'key'      => $key,
             'secret'   => $secret
-        ]);
+        ));
     }
 
     /**
@@ -67,11 +67,11 @@ class CloudSearchClient
      */
     public function setSearchClient($endpoint, $key, $secret)
     {
-        $this->searchClient = CloudSearchDomainClient::factory([
+        $this->searchClient = CloudSearchDomainClient::factory(array(
             'base_url' => $endpoint,
             'key'      => $key,
             'secret'   => $secret
-        ]);
+        ));
     }
 
     /**
@@ -168,7 +168,7 @@ class CloudSearchClient
      */
     public function pushDocument(CloudSearchDocument $document)
     {
-        $this->uploadDocuments([$document->getDocument()]);
+        $this->uploadDocuments(array($document->getDocument()));
     }
 
     /**
@@ -179,7 +179,7 @@ class CloudSearchClient
      */
     public function pushDocuments(array $documents)
     {
-        $arrayDocuments = [];
+        $arrayDocuments = array();
 
         /* @var $document CloudSearchDocument */
         foreach ($documents as $document) {
@@ -200,10 +200,10 @@ class CloudSearchClient
      */
     private function uploadDocuments($documents)
     {
-        $args = [
+        $args = array(
             'contentType' => 'application/json',
             'documents'   => json_encode($documents)
-        ];
+        );
 
         $this->pushClient->uploadDocuments($args);
     }
@@ -215,14 +215,14 @@ class CloudSearchClient
      */
     private function prepareArguments(CloudSearchQueryInterface $query, CloudSearchStructuredQuery $filterQuery = null)
     {
-        $arguments = [
+        $arguments = array(
             'queryParser' => $query->getQueryParserType(),
             'query'       => $query->getQuery(),
             'start'       => $query->getStart(),
             'size'        => $query->getSize(),
             'sort'        => $query->getSort(),
             'queryOptions'=> $query->getQueryOptions()
-        ];
+        );
 
         $facet = $query->getFacet();
 
