@@ -53,7 +53,7 @@ abstract class CloudSearchQuery implements CloudSearchQueryInterface
      */
     private $queryOptions;
 
-    public abstract function getQueryParserType();
+    public function getQueryParserType(){  }
 
     /**
      * The max result size (search returns $size items)
@@ -182,6 +182,6 @@ abstract class CloudSearchQuery implements CloudSearchQueryInterface
      *
      * @return string
      */
-    public abstract function getQuery();
+    public function getQuery(){  }
 
 }
